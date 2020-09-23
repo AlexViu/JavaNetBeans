@@ -28,7 +28,7 @@ public class window extends JFrame{
         setTitle( "Proving RadioButton" );
         setLayout( new FlowLayout() );
 
-        fieldText = new JTextField( "Observe changes in font type", 28);
+        fieldText = new JTextField( "", 28);
         add( fieldText );
         
         simpleJRadioButton1 = new JRadioButton( "Male", false );
@@ -47,7 +47,28 @@ public class window extends JFrame{
          
         add( CheckBoxDaughters );
         add( CheckBoxSons );
+        
+        
+        String male = "male";
+        String female = "female";
+        simpleJRadioButton1.addItemListener( new ManejadorBotonOpcion(male) );
+        simpleJRadioButton2.addItemListener( new ManejadorBotonOpcion(female) );
          
     }
+
+    private static class ManejadorBotonOpcion implements ItemListener {
+
+        String resultado;
+        
+        public ManejadorBotonOpcion(String genero) {
+            
+        }
+
+        @Override
+        public void itemStateChanged(ItemEvent ie) {
+            fieldText.setText(resultado);
+        }
+    }
+
     
 }

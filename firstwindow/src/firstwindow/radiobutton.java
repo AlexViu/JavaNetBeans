@@ -68,26 +68,32 @@ package firstwindow;
         // registra eventos para los objetos JRadioButton
         simpleJRadioButton.addItemListener( new ManejadorBotonOpcion( letterTypeSimple ) );
         boldJRadioButton.addItemListener( new ManejadorBotonOpcion( letterTypeBold ) );
-        italicJRadioButton.addItemListener(
-        new ManejadorBotonOpcion( letterTypeItalic ) );
-        boldItalicJRadioButton.addItemListener(
-        new ManejadorBotonOpcion( letterTypeBoldItalic ) );
+        italicJRadioButton.addItemListener( new ManejadorBotonOpcion( letterTypeItalic ) );
+        boldItalicJRadioButton.addItemListener( new ManejadorBotonOpcion( letterTypeBoldItalic ) );
+        
+        
+        
         } // fin del constructor de FrameOptionButton
 
+    
+    
+    
+    
+    
+    
         // clase para  eventos de botones de opción
         private class ManejadorBotonOpcion implements ItemListener
         {
-        private Font letterType; // tipo de letra asociado con este componente de escucha
+            private Font letterType; // tipo de letra asociado con este componente de escucha
 
-        public ManejadorBotonOpcion( Font f )
-        {
+            public ManejadorBotonOpcion( Font f ) {
        letterType = f; // establece el tipo de letra de este componente de escucha
         } // fin del constructor ManejadorBotonOpcion
 
         // maneja los eventos de botones de opción
         public void itemStateChanged( ItemEvent evento )
         {
-        fieldText.setFont( letterType ); // establece el tipo de letra de fieldText
+            fieldText.setFont( letterType ); // establece el tipo de letra de fieldText
         } 
     } 
  } 
