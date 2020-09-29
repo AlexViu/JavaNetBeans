@@ -54,7 +54,11 @@ public class window extends JFrame{
         
         simpleJRadioButton1.addItemListener( new ManejadorBotonOpcion(male) );
         simpleJRadioButton2.addItemListener( new ManejadorBotonOpcion(female) );
+        
+        ListenerCheckBox manejador = new ListenerCheckBox();
          
+        CheckBoxDaughters.addItemListener( manejador );
+        CheckBoxSons.addItemListener( manejador );
     }
 
     private class ManejadorBotonOpcion implements ItemListener {
@@ -71,5 +75,14 @@ public class window extends JFrame{
         }
     }
 
+    private class ListenerCheckBox implements ItemListener {
+
+        private String daughters;
+        private String sons;
+
+         public void itemStateChanged(ItemEvent ie) {
+           
+        }
+    }
     
 }

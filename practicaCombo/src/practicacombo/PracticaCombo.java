@@ -3,19 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package firstwindow;
+package practicacombo;
 
 /**
  *
  * @author aledom
  */
-public class Firstwindow {
+public class PracticaCombo {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        myfirstframe f = new myfirstframe();
+        // TODO code application logic here
+        
+        frame f = new frame();
         f.setVisible(true);
     }
     
