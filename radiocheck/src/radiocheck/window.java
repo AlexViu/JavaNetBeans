@@ -18,6 +18,8 @@ package radiocheck;
 public class window extends JFrame{
     
     private JTextField fieldText;
+    private JTextField fieldText2;
+    private JTextField fieldText3;
     private JRadioButton simpleJRadioButton1;
     private JRadioButton simpleJRadioButton2;
     private JCheckBox CheckBoxDaughters;
@@ -30,6 +32,11 @@ public class window extends JFrame{
 
         fieldText = new JTextField( "", 28);
         add( fieldText );
+        fieldText2 = new JTextField( "", 28);
+        add( fieldText2 );
+        fieldText3 = new JTextField( "", 28);
+        add( fieldText3 );
+        
         
         simpleJRadioButton1 = new JRadioButton( "Male", false );
         simpleJRadioButton2 = new JRadioButton( "Female", false );
@@ -77,11 +84,17 @@ public class window extends JFrame{
 
     private class ListenerCheckBox implements ItemListener {
 
-        private String daughters;
-        private String sons;
+        String daughters = "you have daughters";
+        String sons = "you have sons";
 
          public void itemStateChanged(ItemEvent ie) {
-           
+            if ( ie.getSource() == CheckBoxDaughters ){
+                fieldText2.setText(daughters);
+            }
+            
+            if ( ie.getSource() == CheckBoxSons ){
+                fieldText3.setText(sons);
+            }
         }
     }
     
