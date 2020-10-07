@@ -30,4 +30,5 @@ public class listShow implements Serializable {
     public int longitud() {
         return seriesList.size();
     }
+
 }
