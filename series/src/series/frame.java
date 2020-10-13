@@ -121,8 +121,58 @@ public class frame extends JFrame{
             if (e.getSource()==b3) {
                 s=c.next();
             }
+            if (e.getSource()==b4) {
+                s=c.last();
+            }
+            if (e.getSource()==b5) {
+                s=c.delete();
+            }
+            if (e.getSource() == b5) {
+                if (b5.getText().equals("+")){
+                    t1.setText("");
+                    t2.setText("");
+                    t3.setText("");
+                    t4.setText("");
+                    t5.setText("");
+                    
+                    b1.setEnabled(false);
+                    b2.setEnabled(false);
+                    b3.setEnabled(false);
+                    b4.setEnabled(false);
+                    b6.setEnabled(false);
+                    b7.setEnabled(false);
+                    
+                    b5.setText("+++");
+                    
+                    t1.setEditable(true);
+                    t2.setEditable(true);
+                    t3.setEditable(true);
+                    t4.setEditable(true);
+                    t5.setEditable(true);
+                    
+                } else {
+                     b1.setEnabled(true);
+                     b2.setEnabled(true);
+                     b3.setEnabled(true);
+                     b4.setEnabled(true);
+                     b6.setEnabled(true);
+                     b7.setEnabled(true);
+                     
+                     b5.setText("+");
+                     
+                     s=fillshow();
+                     c.nuevo(s);
+                }
+            
+            }
             updating(s);
             
+        }
+
+        private show fillshow() {
+            show s = new show(t1.getText(),t2.getText(), Integer.parseInt(t3.getText()), t4.getText(), Integer.parseInt(t5.getText()));
+            
+            return s;
         }
     }
 }

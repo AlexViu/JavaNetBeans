@@ -27,6 +27,10 @@ public class controller {
         position=0;
         return ls.getShow(position);
     }
+    public show last() {
+        position=ls.longitud()-1;
+        return ls.getShow(position);
+    }
     public show previus() {
         if (position>0) {
             position--;
@@ -39,5 +43,15 @@ public class controller {
             position--;
         }
         return ls.getShow(position);
+    }
+    
+    public show delete(){
+       return ls.deleteShow(position);
+    }
+    
+    public void nuevo(show s) {
+        ls.setShow(s);
+        position=ls.longitud()-1;
+        acc.saveLS(ls);
     }
 }

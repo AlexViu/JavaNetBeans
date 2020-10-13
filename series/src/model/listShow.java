@@ -7,6 +7,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -26,9 +27,11 @@ public class listShow implements Serializable {
     public void setShow(show s) {
         seriesList.add(s);
     }
-    
     public int longitud() {
         return seriesList.size();
     }
 
+    public show deleteShow(int p) {
+        return seriesList.remove(p);
+    }
 }
