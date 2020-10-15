@@ -45,8 +45,9 @@ public class controller {
         return ls.getShow(position);
     }
     
-    public show delete(){
-       return ls.deleteShow(position);
+    public void delete(){
+       ls.deleteShow(position);
+       acc.saveLS(ls);
     }
     
     public void nuevo(show s) {
@@ -54,4 +55,8 @@ public class controller {
         position=ls.longitud()-1;
         acc.saveLS(ls);
     }
+    public void update(show s){
+            ls.update(s, position);
+            acc.saveLS(ls);
+        }
 }

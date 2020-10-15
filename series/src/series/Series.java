@@ -26,20 +26,20 @@ public class Series {
         frame f = new frame(control);
         f.setVisible(true);
         
-       // show sh=new show("Breaking Bad", "Vicent Guilligan", 5,"Drama", 5);
-        //listShow ls = new listShow();
-        //ls.setShow(sh);
-        //sh= new show("Game of thrones", "David Benioff", 6,"1", 6);
-        //ls.setShow(sh);
-        //access.saveLS(ls);
-        //System.out.print("Saved series");
+       /* show sh=new show("Breaking Bad", "Vicent Guilligan", 5,"Drama", 5);
+       listShow ls = new listShow();
+       ls.setShow(sh);
+       sh= new show("Game of thrones", "David Benioff", 6,"1", 6);
+       ls.setShow(sh);
+       access.saveLS(ls);
+       System.out.print("Saved series");
         
-        //listShow ls = new listShow();
-        //ls=access.loadLS();
-        //show sh=new show();
-        //sh=ls.getShow(0);
-        //System.out.print("Title:");
-        //System.out.println(sh.getTitle());
+        listShow ls = new listShow();
+        ls=access.loadLS();
+        show sh=new show();
+        sh=ls.getShow(0);
+        System.out.print("Title:");
+        System.out.println(sh.getTitle()); */
 
         //sh=ls.getShow(1);
         //System.out.print("Title:");

@@ -7,7 +7,6 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  *
@@ -31,7 +30,15 @@ public class listShow implements Serializable {
         return seriesList.size();
     }
 
-    public show deleteShow(int p) {
-        return seriesList.remove(p);
+    public void deleteShow(int p) {
+        seriesList.remove(p);
+    }
+    
+    public void update(show s, int p){
+        seriesList.get(p).setTitle(s.getTitle());
+        seriesList.get(p).setScriptwriter(s.getScriptwriter());
+        seriesList.get(p).setSeasons(s.getSeasons());
+        seriesList.get(p).setGenre(s.getGenre());
+        seriesList.get(p).setViews(s.getViews());
     }
 }

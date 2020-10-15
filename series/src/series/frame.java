@@ -24,8 +24,10 @@ public class frame extends JFrame{
     
     private JPanel panel1,panel2,panel3;
     private JButton b1, b2, b3, b4, b5, b6, b7;
-    private JLabel e1,e2,e3,e4,e5;
+    private JLabel e1,e2,e3,e4,e5,e6;
     private JTextField t1,t2,t3,t4,t5;
+    private JComboBox c1;
+    private String[] platforms = {"Netflix", "Prime Video", "HBO"}; 
     
     private controller c = null;
     
@@ -41,7 +43,7 @@ public class frame extends JFrame{
         panel3 = new JPanel();
         
         panel1.setLayout(new BorderLayout());
-        panel2.setLayout(new GridLayout(5,2,10,10));
+        panel2.setLayout(new GridLayout(6,2,10,10));
         panel3.setLayout(new FlowLayout());
         
         add(panel1);
@@ -84,6 +86,10 @@ public class frame extends JFrame{
         t5=new JTextField(5);
         panel2.add(e5);
         panel2.add(t5);
+        e6=new JLabel("Platfom");
+        c1= new JComboBox(platforms);
+        panel2.add(e6);
+        panel2.add(c1);
         
         t1.setEditable(false);
         t2.setEditable(false);
@@ -115,18 +121,16 @@ public class frame extends JFrame{
             if (e.getSource() == b1) {
                 s=c.first();
             }
-            if (e.getSource()==b2) {
+            if (e.getSource() == b2) {
                 s=c.previus();
             }
-            if (e.getSource()==b3) {
+            if (e.getSource() == b3) {
                 s=c.next();
             }
-            if (e.getSource()==b4) {
+            if (e.getSource() == b4) {
                 s=c.last();
-            }
-            if (e.getSource()==b5) {
-                s=c.delete();
-            }
+            } 
+                    
             if (e.getSource() == b5) {
                 if (b5.getText().equals("+")){
                     t1.setText("");
@@ -158,6 +162,12 @@ public class frame extends JFrame{
                      b6.setEnabled(true);
                      b7.setEnabled(true);
                      
+                    t1.setEditable(false);
+                    t2.setEditable(false);
+                    t3.setEditable(false);
+                    t4.setEditable(false);
+                    t5.setEditable(false);
+                     
                      b5.setText("+");
                      
                      s=fillshow();
@@ -165,6 +175,37 @@ public class frame extends JFrame{
                 }
             
             }
+
+            if (e.getSource()==b6) {
+                c.delete();
+                s=c.first();
+            }
+            if (e.getSource()==b7){
+                if (b7.getText().equals("*")) {
+                
+                    t1.setEditable(true);
+                    t2.setEditable(true);
+                    t3.setEditable(true);
+                    t4.setEditable(true);
+                    t5.setEditable(true);
+                
+                    s=fillshow();
+                    b7.setText("***");
+                } else {
+                
+                    t1.setEditable(false);
+                    t2.setEditable(false);
+                    t3.setEditable(false);
+                    t4.setEditable(false);
+                    t5.setEditable(false);
+                    
+                    s=fillshow();
+                    c.update(s);
+                    
+                    b7.setText("*");
+                }
+                
+            } 
             updating(s);
             
         }
