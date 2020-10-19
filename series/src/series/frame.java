@@ -96,6 +96,7 @@ public class frame extends JFrame{
         t3.setEditable(false);
         t4.setEditable(false);
         t5.setEditable(false);
+        c1.setEnabled(false);
         
         buttonsListener bl = new buttonsListener();
         b1.addActionListener(bl);
@@ -113,11 +114,13 @@ public class frame extends JFrame{
         t3.setText(String.valueOf(s.getSeasons()));
         t4.setText(s.getGenre());
         t5.setText(String.valueOf(s.getViews()));
+        c1.setSelectedItem(s.getPlatform());
     }
     
     class buttonsListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             show s= new show();
+            
             if (e.getSource() == b1) {
                 s=c.first();
             }
@@ -153,6 +156,7 @@ public class frame extends JFrame{
                     t3.setEditable(true);
                     t4.setEditable(true);
                     t5.setEditable(true);
+                    c1.setEnabled(true);
                     
                 } else {
                      b1.setEnabled(true);
@@ -167,6 +171,7 @@ public class frame extends JFrame{
                     t3.setEditable(false);
                     t4.setEditable(false);
                     t5.setEditable(false);
+                    c1.setEnabled(false);
                      
                      b5.setText("+");
                      
@@ -188,6 +193,7 @@ public class frame extends JFrame{
                     t3.setEditable(true);
                     t4.setEditable(true);
                     t5.setEditable(true);
+                    c1.setEnabled(true);
                 
                     s=fillshow();
                     b7.setText("***");
@@ -198,6 +204,7 @@ public class frame extends JFrame{
                     t3.setEditable(false);
                     t4.setEditable(false);
                     t5.setEditable(false);
+                    c1.setEnabled(false);
                     
                     s=fillshow();
                     c.update(s);
@@ -211,7 +218,7 @@ public class frame extends JFrame{
         }
 
         private show fillshow() {
-            show s = new show(t1.getText(),t2.getText(), Integer.parseInt(t3.getText()), t4.getText(), Integer.parseInt(t5.getText()));
+            show s = new show(t1.getText(),t2.getText(), Integer.parseInt(t3.getText()), t4.getText(), Integer.parseInt(t5.getText()), c1.getSelectedItem().toString());
             
             return s;
         }

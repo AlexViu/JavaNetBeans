@@ -40,5 +40,6 @@ public class listShow implements Serializable {
         seriesList.get(p).setSeasons(s.getSeasons());
         seriesList.get(p).setGenre(s.getGenre());
         seriesList.get(p).setViews(s.getViews());
+        seriesList.get(p).setPlatform(s.getPlatform());
     }
 }
