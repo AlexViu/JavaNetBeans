@@ -15,9 +15,10 @@ public class Connection_DB {
         Connection con = null; 
     
         try {
-            String urlOdbc = "jdbc:mysql://localhost:3306/di?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+            String url="jdbc:mysql://localhost:3306/di?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
 
-            con = (java.sql.DriverManager.getConnection (urlOdbc, "root", "")); 
+
+            con = (java.sql.DriverManager.getConnection (url, "root", "123456")); 
             return con;
             
         } catch (Exception e){

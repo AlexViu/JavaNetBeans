@@ -14,12 +14,12 @@ import java.util.*;
  */
 public class ClientDAO {
     
-    public findById client (Connection to, cli client) throws Exception {
+    public client findById (Connection to, client cli) throws Exception {
         client c = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try { 
-            stmt = con.prepareStatement ("SELECT * FROM clients WHERE id =?");
+            stmt = to.prepareStatement ("SELECT * FROM clients WHERE id =?");
             stmt.setString (1, cli.getId ());
             rs = stmt.executeQuery ();
             while (rs.next ()) {
@@ -53,16 +53,16 @@ public class ClientDAO {
             while (rs.next ()) {
                 cli = new client ();
                 getClientRow (rs, cli); 
-                clientList.add (cli);
+                listClients.add (cli);
             }
         } catch (SQLException ex) {
             ex.printStackTrace ();
-            throw new Exception ("There was a problem searching the client “ + ex.getMessage ());
+            throw new Exception ("There was a problem searching the client " + ex.getMessage ());
         } 
         finally {
             if (rs != null) rs.close (); // We close the result
             if (st != null) st.close (); // We close the Statement 
         }
-        return CustomerList;
+        return listClients;
     }
 }
