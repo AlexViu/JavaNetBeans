@@ -46,7 +46,7 @@ public class peliculaDAO {
         ResultSet rs = null; 
         try {
             st = con.createStatement ();
-             rs = st.executeQuery ("Select * from clients"); 
+             rs = st.executeQuery ("Select * from pelicula"); 
             pelicula pel = null;
             while (rs.next ()) {
                 pel = new pelicula ();

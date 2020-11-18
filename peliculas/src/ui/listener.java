@@ -31,7 +31,7 @@ public class listener implements ActionListener {
         this.forward = forward;
         this.search = search;
         this.all = all;
-        position = 0; 
+        position =0; 
     }
         
     
@@ -47,7 +47,8 @@ public class listener implements ActionListener {
                 Connection_DB Connection_DB = new Connection_DB();
                 Connection with = Connection_DB.OpenConnection();
                 peliculaDAO ClientDAO = new peliculaDAO();
-                p.setId(idSearch.getText());
+                int id_text = Integer.parseInt(idSearch.getText());
+                p.setId(id_text);
                 p = ClientDAO.findById(with, p);
                 Connection_DB.CloseConnection(with);
             } catch (Exception ex) {
