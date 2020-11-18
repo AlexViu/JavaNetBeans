@@ -13,8 +13,29 @@ public class pelicula {
     private int Id;
     private String Titulo;
     private String Director;
-    private String accion;
+    private String Genero;
 
+    public pelicula() {
+       
+    }
+    
+    public pelicula(int id) {
+        this.Id = id;
+    }
+    
+    public pelicula(String titulo, String director, String genero) {
+        this.Titulo = titulo;
+        this.Director = director;
+        this.Genero = genero;
+    }
+    
+    public pelicula(int id, String titulo, String director, String genero) {
+        this.Id = id;
+        this.Titulo = titulo;
+        this.Director = director;
+        this.Genero = genero;
+    }
+    
     public int getId() {
         return Id;
     }
@@ -39,12 +60,12 @@ public class pelicula {
         this.Director = Director;
     }
 
-    public String getAccion() {
-        return accion;
+    public String getGenero() {
+        return Genero;
     }
 
-    public void setAccion(String accion) {
-        this.accion = accion;
+    public void setGenero(String genero) {
+        this.Genero = genero;
     }
     
     

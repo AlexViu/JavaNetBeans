@@ -17,20 +17,26 @@ import javax.swing.*;
  * @author aledom
  */
 public class listener implements ActionListener {
-    private JTextField id, idSearch;
-    private JTextArea titulo;
-    private JButton backwards, forward, search, all;
+    private JTextField id, idSearch, titulo, genero, director;
+    private JButton backwards, forward, search, all, nuevo, edit, add_pel,delete, updatep;
     private List <pelicula> peliculas;
     private int position;
     
-    public listener (JTextField id, JTextArea titulos, JTextField idSearch, JButton backwards, JButton forward, JButton search, JButton all) {
+    public listener (JTextField id, JTextField titulos, JTextField director, JTextField genero, JTextField idSearch, JButton backwards, JButton forward, JButton search, JButton all, JButton nuevo, JButton edit, JButton add_pel, JButton delete,JButton updatep) {
         this.id = id;
         this.titulo = titulos;
+        this.genero = genero;
+        this.director = director;
         this.idSearch = idSearch;
         this.backwards = backwards;
         this.forward = forward;
         this.search = search;
         this.all = all;
+        this.nuevo = nuevo;
+        this.edit = edit;
+        this.add_pel = add_pel;
+        this.delete = delete;
+        this.updatep = updatep;
         position =0; 
     }
         
@@ -43,17 +49,18 @@ public class listener implements ActionListener {
             forward.setEnabled (false);
             backwards.setEnabled (false);
             
-            try {
-                Connection_DB Connection_DB = new Connection_DB();
-                Connection with = Connection_DB.OpenConnection();
-                peliculaDAO ClientDAO = new peliculaDAO();
-                int id_text = Integer.parseInt(idSearch.getText());
-                p.setId(id_text);
-                p = ClientDAO.findById(with, p);
-                Connection_DB.CloseConnection(with);
-            } catch (Exception ex) {
-                ex.printStackTrace(); 
-            }
+
+                try {
+                    Connection_DB Connection_DB = new Connection_DB();
+                    Connection with = Connection_DB.OpenConnection();
+                    peliculaDAO PeliculaDAO = new peliculaDAO();
+                    int id_text = Integer.parseInt(idSearch.getText());
+                    p.setId(id_text);
+                    p = PeliculaDAO.findById(with, p);
+                    Connection_DB.CloseConnection(with);
+                } catch (Exception ex) {
+                    ex.printStackTrace(); 
+                }
         }
         
         if (e.getSource() == this.all) {
@@ -89,11 +96,83 @@ public class listener implements ActionListener {
             }
             p = peliculas.get (position);
             }
+
+        if (e.getSource() == this.nuevo) {
+            forward.setEnabled (false);
+            backwards.setEnabled (false);
+            add_pel.setVisible(true);
+            titulo.setEditable(true);
+            director.setEditable(true);
+            genero.setEditable(true);
+
+        }
+        
+        if(e.getSource() == this.add_pel){
+            try {
+                Connection_DB Connection_DB = new Connection_DB();
+                Connection with = Connection_DB.OpenConnection();
+                peliculaDAO PeliculaDAO = new peliculaDAO();
+                pelicula pe = new pelicula(this.titulo.getText(),this.director.getText(), this.genero.getText());
+                pe = PeliculaDAO.insert(with, pe);
+                Connection_DB.CloseConnection(with);
+            } catch (Exception ex) {
+                ex.printStackTrace(); 
+            }
+            add_pel.setVisible(false);
+            titulo.setEditable(false);
+            director.setEditable(false);
+            genero.setEditable(false);
+        }
+        
+        if(e.getSource() == this.delete){
+            try {
+                Connection_DB Connection_DB = new Connection_DB();
+                Connection with = Connection_DB.OpenConnection();
+                peliculaDAO PeliculaDAO = new peliculaDAO();
+                int del_id = Integer.parseInt(this.id.getText());
+                pelicula pe = new pelicula(del_id);
+                pe = PeliculaDAO.delete(with, pe);
+                Connection_DB.CloseConnection(with);
+            } catch (Exception ex) {
+                ex.printStackTrace(); 
+            }   
+        }
+
+        if(e.getSource() == this.edit){
+           updatep.setVisible(true);
+           id.setEditable(true);
+           titulo.setEditable(true);
+           director.setEditable(true);
+           genero.setEditable(true);
+                
+        }
+        
+        if(e.getSource() == this.updatep){
+            try {
+                Connection_DB Connection_DB = new Connection_DB();
+                Connection with = Connection_DB.OpenConnection();
+                peliculaDAO PeliculaDAO = new peliculaDAO();
+                int del_id = Integer.parseInt(this.id.getText());
+                pelicula pe = new pelicula(del_id, this.titulo.getText(),this.director.getText(), this.genero.getText());
+                pe = PeliculaDAO.updatep(with, pe);
+                Connection_DB.CloseConnection(with);
+            } catch (Exception ex) {
+                ex.printStackTrace(); 
+            }
+            updatep.setVisible(false);
+            id.setEditable(false);
+            titulo.setEditable(false);
+            director.setEditable(false);
+            genero.setEditable(false);
+           }
             update (p); 
         }
+ 
        private void update (pelicula p) {
            String id_text = Integer.toString(p.getId());
             this.id.setText(id_text);
-            this.titulo.setText (p.getTitulo()); 
+            this.titulo.setText (p.getTitulo());
+            this.director.setText (p.getDirector());
+            this.genero.setText (p.getGenero());
        }
 }
