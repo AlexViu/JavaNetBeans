@@ -7,7 +7,7 @@ package DAO;
 
 import java.sql.*;
 import java.util.*;
-import DAO.pelicula;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,18 +22,22 @@ public class peliculaDAO {
             stmt = to.prepareStatement ("SELECT * FROM pelicula WHERE id =?");
             stmt.setInt (1, pel.getId());
             rs = stmt.executeQuery ();
+            
             while (rs.next ()) {
                 p = new pelicula ();
                 getPeliculaRow (rs, p); 
-            } 
+            }
+           
         } catch (SQLException ex) {
-        ex.printStackTrace ();
-        throw new Exception (ex.getMessage());
-        } finally {
+            ex.printStackTrace ();
+            throw new Exception (ex.getMessage());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }finally {
             if (rs != null) rs.close (); // We close the result
             if (stmt != null) stmt.close (); // We close the Statement 
         }
-            return p;
+        return p;
     }
      
      private void getPeliculaRow(ResultSet rs, pelicula pel) throws SQLException {
@@ -41,7 +45,7 @@ public class peliculaDAO {
         pel.setTitulo (rs.getString ("titulo"));
         pel.setDirector(rs.getString ("director"));
         pel.setGenero(rs.getString ("genero"));
-    
+
     }
       public List <pelicula> findAll (Connection con) throws Exception {
         List <pelicula> listPeliculas = new ArrayList ();
@@ -67,7 +71,6 @@ public class peliculaDAO {
         return listPeliculas;
     }
      
-      
       public pelicula insert (Connection to, pelicula pel) throws Exception {
         pelicula p = null;
         PreparedStatement stmt = null;

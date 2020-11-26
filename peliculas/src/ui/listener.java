@@ -10,6 +10,7 @@ import DAO.pelicula;
 import java.awt.event.*;
 import java.sql.*;
 import java.util.List;
+import javax.crypto.interfaces.PBEKey;
 import javax.swing.*;
 
 /**
@@ -49,7 +50,6 @@ public class listener implements ActionListener {
             forward.setEnabled (false);
             backwards.setEnabled (false);
             
-
                 try {
                     Connection_DB Connection_DB = new Connection_DB();
                     Connection with = Connection_DB.OpenConnection();
@@ -58,8 +58,12 @@ public class listener implements ActionListener {
                     p.setId(id_text);
                     p = PeliculaDAO.findById(with, p);
                     Connection_DB.CloseConnection(with);
+                    if(p == null) {
+                       throw new Exception ("No results");
+                    }
                 } catch (Exception ex) {
-                    ex.printStackTrace(); 
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                    return;
                 }
         }
         
@@ -101,9 +105,12 @@ public class listener implements ActionListener {
             forward.setEnabled (false);
             backwards.setEnabled (false);
             add_pel.setVisible(true);
+            nuevo.setVisible(false);
             titulo.setEditable(true);
             director.setEditable(true);
             genero.setEditable(true);
+            edit.setEnabled(false);
+            delete.setEnabled(false);
 
         }
         
@@ -119,9 +126,12 @@ public class listener implements ActionListener {
                 ex.printStackTrace(); 
             }
             add_pel.setVisible(false);
+            nuevo.setVisible(true);
             titulo.setEditable(false);
             director.setEditable(false);
             genero.setEditable(false);
+            edit.setEnabled(true);
+            delete.setEnabled(true);
         }
         
         if(e.getSource() == this.delete){
@@ -139,12 +149,28 @@ public class listener implements ActionListener {
         }
 
         if(e.getSource() == this.edit){
+           
+            try {
+                    Connection_DB Connection_DB = new Connection_DB();
+                    Connection with = Connection_DB.OpenConnection();
+                    peliculaDAO PeliculaDAO = new peliculaDAO();
+                    int id_text = Integer.parseInt(id.getText());
+                    p.setId(id_text);
+                    p = PeliculaDAO.findById(with, p);
+                    Connection_DB.CloseConnection(with);
+                    
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Select a movie to edit");
+                }
+            
            updatep.setVisible(true);
+           edit.setVisible(false);
            id.setEditable(true);
            titulo.setEditable(true);
            director.setEditable(true);
            genero.setEditable(true);
-                
+           nuevo.setEnabled(false);
+           delete.setEnabled(false);
         }
         
         if(e.getSource() == this.updatep){
@@ -160,19 +186,23 @@ public class listener implements ActionListener {
                 ex.printStackTrace(); 
             }
             updatep.setVisible(false);
+            edit.setVisible(true);
             id.setEditable(false);
             titulo.setEditable(false);
             director.setEditable(false);
             genero.setEditable(false);
+            nuevo.setEnabled(true);
+            delete.setEnabled(true);
            }
             update (p); 
         }
  
        private void update (pelicula p) {
            String id_text = Integer.toString(p.getId());
-            this.id.setText(id_text);
-            this.titulo.setText (p.getTitulo());
-            this.director.setText (p.getDirector());
-            this.genero.setText (p.getGenero());
+           this.id.setText(id_text);
+           this.titulo.setText (p.getTitulo());
+           this.director.setText (p.getDirector());
+           this.genero.setText (p.getGenero());
+           
        }
 }
